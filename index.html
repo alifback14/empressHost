@@ -3,261 +3,297 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VoxenHost | Panel Minecraft</title>
+<title>Empresstore - MC Hosting</title>
 
 <style>
-* {
-    box-sizing: border-box;
-    font-family: 'Segoe UI', sans-serif;
+:root{
+--red:#e10600;
+--dark:#0b0b0b;
+--card:#151515;
+--gray:#888;
 }
 
-body {
-    margin: 0;
-    background: linear-gradient(135deg, #020617, #020617);
-    color: #e5e7eb;
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI,sans-serif}
+body{background:var(--dark);color:#fff;scroll-behavior:smooth}
+
+/* animation */
+.fade{animation:fade .6s ease}
+@keyframes fade{from{opacity:0;transform:translateY(20px)}to{opacity:1}}
+
+/* nav */
+nav{
+background:#000;padding:15px 20px;
+display:flex;justify-content:space-between;align-items:center
+}
+.logo{color:var(--red);font-size:20px;font-weight:bold}
+nav a{color:#fff;text-decoration:none;margin-left:15px;cursor:pointer}
+
+/* page */
+.page{display:none;padding:60px 20px}
+.page.active{display:block}
+
+/* hero */
+.hero{
+text-align:center;padding:90px 20px;
+background:linear-gradient(160deg,#e10600,#5a0000)
+}
+.hero h1{font-size:36px}
+.hero p{opacity:.9;margin-top:10px}
+.btn{
+display:inline-block;margin-top:25px;
+padding:12px 30px;background:#000;
+color:#fff;border-radius:8px;
+cursor:pointer;text-decoration:none
 }
 
-/* HEADER */
-header {
-    text-align: center;
-    padding: 40px 20px;
+/* cards */
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px
 }
-header h1 {
-    color: #38bdf8;
-    margin-bottom: 10px;
+.card{
+background:var(--card);
+padding:20px;border-radius:16px;
+box-shadow:0 0 25px rgba(225,6,0,.25);
+transition:.4s;position:relative
 }
-header p {
-    color: #94a3b8;
+.card:hover{transform:translateY(-8px) scale(1.02)}
+.card h3{color:var(--red)}
+.price{font-size:20px;margin:10px 0}
+.card ul{font-size:14px}
+.card ul li{margin-bottom:6px}
+.card button{
+width:100%;padding:12px;
+border:none;border-radius:10px;
+background:var(--red);color:white;
+font-weight:bold;cursor:pointer
+}
+.card.disabled{opacity:.5;pointer-events:none}
+
+/* badge */
+.badge{
+position:absolute;top:-10px;right:15px;
+background:#444;padding:4px 10px;
+border-radius:20px;font-size:12px
 }
 
-/* CONTAINER */
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
+/* faq */
+.faq-item{
+background:#151515;
+padding:15px;border-radius:10px;
+margin-bottom:10px;cursor:pointer
+}
+.faq-item p{display:none;font-size:14px;opacity:.9}
+
+/* popup */
+.popup{
+position:fixed;inset:0;
+background:rgba(0,0,0,.8);
+display:none;align-items:center;justify-content:center;
+z-index:999
+}
+.popup-box{
+background:#151515;padding:25px;
+border-radius:14px;text-align:center;
+max-width:300px;animation:fade .5s
+}
+.popup-box h3{color:var(--red)}
+.popup-box button{
+margin-top:15px;padding:10px 20px;
+border:none;border-radius:8px;
+background:var(--red);color:#fff;cursor:pointer
 }
 
-/* CARD */
-.card {
-    background: #020617;
-    border: 1px solid #1e293b;
-    border-radius: 16px;
-    padding: 20px;
-    transition: 0.3s;
-}
-.card:hover {
-    transform: translateY(-6px);
-    border-color: #38bdf8;
-}
-
-/* TEXT */
-.card h2 {
-    color: #38bdf8;
-}
-.price {
-    font-size: 22px;
-    color: #22c55e;
-    font-weight: bold;
-    margin: 10px 0;
-}
-ul {
-    padding-left: 18px;
-    color: #cbd5f5;
-}
-ul li {
-    margin-bottom: 6px;
-}
-
-/* BUTTON */
-.btn {
-    display: block;
-    margin-top: 15px;
-    padding: 12px;
-    text-align: center;
-    background: #22c55e;
-    color: #020617;
-    text-decoration: none;
-    border-radius: 10px;
-    font-weight: bold;
-}
-.btn:hover {
-    background: #16a34a;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 30px 20px;
-    color: #94a3b8;
-    font-size: 14px;
-}
-footer a {
-    color: #38bdf8;
-    text-decoration: none;
+/* footer */
+footer{
+background:#000;padding:15px;
+text-align:center;font-size:14px;opacity:.7
 }
 </style>
 </head>
-
 <body>
 
-<header>
-<h1>📜 OPEN PANEL HOSTING MINECRAFT 📜</h1>
-<p>Murah • Stabil • Performa Tinggi 🚀<br>🪪 <b>VoxenHost</b></p>
-</header>
+<!-- POPUP PROMO -->
+<div class="popup" id="promo">
+<div class="popup-box">
+<h3>🔥 PROMO EMPRESSTORE</h3>
+<p>Harga mulai Rp5.000<br>CPU mulai 100% 🚀</p>
+<button onclick="closePromo()">Tutup</button>
+</div>
+</div>
 
-<div class="container">
+<nav>
+<div class="logo">Empresstore</div>
+<div>
+<a onclick="showPage('home')">Home</a>
+<a onclick="showPage('hosting')">Hosting</a>
+<a onclick="showPage('faq')">FAQ</a>
+<a onclick="showPage('contact')">Contact</a>
+</div>
+</nav>
 
-<!-- 1GB -->
-<div class="card">
-<h2>RAM 1GB</h2>
-<div class="price">Rp 5.000</div>
+<!-- HOME -->
+<section id="home" class="page active fade">
+<div class="hero">
+<h1>PANEL HOSTING MINECRAFT</h1>
+<p>Public & Private Hosting • Pterodactyl Panel</p>
+<a class="btn" onclick="showPage('hosting')">Lihat Paket</a>
+</div>
+</section>
+
+<!-- HOSTING -->
+<section id="hosting" class="page fade">
+<h2 style="text-align:center;color:var(--red)">Public Hosting</h2><br>
+<div class="cards" id="publicCards"></div>
+
+<br><br>
+<h2 style="text-align:center;color:var(--red)">Private Hosting</h2>
+<p style="text-align:center;color:var(--gray)">
+Maintenance berakhir dalam:
+<b id="countdown"></b>
+</p><br>
+
+<div class="cards">
+<div class="card disabled">
+<div class="badge">MAINTENANCE</div>
+<h3>Private Hosting</h3>
+<div class="price">Custom Plan</div>
 <ul>
-<li>CPU 100%</li>
-<li>Disk 5GB</li>
-<li>Cocok server kecil</li>
-<li>Anti DDoS</li>
-<li>Uptime 99%</li>
+<li>✔ CPU Dedicated</li>
+<li>✔ Disk Dedicated NVMe</li>
+<li>✔ Anti Lag</li>
+<li>✔ Priority Support</li>
 </ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%201GB" target="_blank">Order via WhatsApp</a>
+<button>Unavailable</button>
+</div>
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="page fade">
+<h2 style="color:var(--red);text-align:center">FAQ & RULES</h2><br>
+
+<div class="faq-item" onclick="toggleFaq(this)">
+<b>❓ Hosting aktif berapa lama?</b>
+<p>Hosting aktif 30 hari dan bisa diperpanjang.</p>
 </div>
 
-<!-- 2GB -->
-<div class="card">
-<h2>RAM 2GB</h2>
-<div class="price">Rp 8.000</div>
-<ul>
-<li>CPU 140%</li>
-<li>Disk 7GB</li>
-<li>SMP ringan</li>
-<li>Panel stabil</li>
-<li>Support cepat</li>
-</ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%202GB" target="_blank">Order via WhatsApp</a>
+<div class="faq-item" onclick="toggleFaq(this)">
+<b>📜 Rules</b>
+<p>❌ Dilarang DDOS<br>❌ Mining Crypto<br>❌ Abuse Resource</p>
 </div>
 
-<!-- 3GB -->
-<div class="card">
-<h2>RAM 3GB</h2>
-<div class="price">Rp 13.000</div>
-<ul>
-<li>CPU 200%</li>
-<li>Disk 8GB</li>
-<li>Gameplay lancar</li>
-<li>Survival / SMP</li>
-<li>AMD Milan CPU</li>
-</ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%203GB" target="_blank">Order via WhatsApp</a>
+<div class="faq-item" onclick="toggleFaq(this)">
+<b>💳 Metode Pembayaran</b>
+<p>DANA • OVO • GOPAY • QRIS</p>
 </div>
+</section>
 
-<!-- 5GB -->
-<div class="card">
-<h2>RAM 5GB</h2>
-<div class="price">Rp 25.000</div>
-<ul>
-<li>CPU 270%</li>
-<li>Disk 12GB</li>
-<li>Anti lag</li>
-<li>Banyak plugin</li>
-<li>RPG & SMP</li>
-</ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%205GB" target="_blank">Order via WhatsApp</a>
-</div>
+<!-- CONTACT -->
+<section id="contact" class="page fade" style="text-align:center">
+<h2>Order Hosting</h2><br>
 
-<!-- 6GB -->
-<div class="card">
-<h2>RAM 6GB</h2>
-<div class="price">Rp 46.000</div>
-<ul>
-<li>CPU 300%</li>
-<li>Disk 15GB</li>
-<li>Stabil 24/7</li>
-<li>Player menengah</li>
-<li>Performa tinggi</li>
-</ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%206GB" target="_blank">Order via WhatsApp</a>
-</div>
+<select id="paket"></select><br><br>
+<select id="pay">
+<option>DANA</option>
+<option>OVO</option>
+<option>GOPAY</option>
+<option>QRIS</option>
+</select><br><br>
 
-<!-- 7GB -->
-<div class="card">
-<h2>RAM 7GB</h2>
-<div class="price">Rp 55.000</div>
-<ul>
-<li>CPU 350%</li>
-<li>Disk 18GB</li>
-<li>Minigame ready</li>
-<li>No lag spike</li>
-<li>High performance</li>
-</ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%207GB" target="_blank">Order via WhatsApp</a>
-</div>
-
-<!-- 8GB -->
-<div class="card">
-<h2>RAM 8GB</h2>
-<div class="price">Rp 66.000</div>
-<ul>
-<li>CPU 400%</li>
-<li>Disk 20GB</li>
-<li>Ramai player</li>
-<li>Premium server</li>
-<li>Stabil tinggi</li>
-</ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%208GB" target="_blank">Order via WhatsApp</a>
-</div>
-
-<!-- 9GB -->
-<div class="card">
-<h2>RAM 9GB</h2>
-<div class="price">Rp 87.000</div>
-<ul>
-<li>CPU 450%</li>
-<li>Disk 25GB</li>
-<li>Server besar</li>
-<li>Plugin berat</li>
-<li>Anti crash</li>
-</ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%209GB" target="_blank">Order via WhatsApp</a>
-</div>
-
-<!-- 10GB -->
-<div class="card">
-<h2>RAM 10GB</h2>
-<div class="price">Rp 92.000</div>
-<ul>
-<li>CPU 500%</li>
-<li>Disk 25GB</li>
-<li>High load</li>
-<li>Event server</li>
-<li>Super stabil</li>
-</ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%2010GB" target="_blank">Order via WhatsApp</a>
-</div>
-
-<!-- 11GB -->
-<div class="card">
-<h2>RAM 11GB</h2>
-<div class="price">Rp 130.000</div>
-<ul>
-<li>CPU 550%</li>
-<li>Disk 30GB</li>
-<li>Server besar</li>
-<li>Tanpa lag</li>
-<li>Performa maksimal</li>
-</ul>
-<a class="btn" href="https://wa.me/628976497354?text=Order%20Panel%20Minecraft%2011GB" target="_blank">Order via WhatsApp</a>
-</div>
-
-</div>
+<button class="btn" onclick="order()">Order Sekarang</button>
+</section>
 
 <footer>
-<p>✨ Kelebihan VoxenHost ✨<br>
-Uptime 99% • Anti DDoS • AMD Milan 7006x</p>
-<p><a href="https://chat.whatsapp.com/ELWtHdnS8kIDQGYzuDhGpS" target="_blank">Join Group Promosi</a></p>
-<p>🔥 VoxenHost – Jalankan Server Impianmu Sekarang!</p>
+© 2025 Empresstore • MC Hosting
 </footer>
+
+<script>
+const wa="628976497354";
+
+/* paket + harga + cpu >=100% + disk */
+const paket=[
+{name:"Nano 512MB",price:"Rp5.000",cpu:"100%",disk:"5GB"},
+{name:"Basic 1GB",price:"Rp10.000",cpu:"120%",disk:"10GB"},
+{name:"Standard 2GB",price:"Rp20.000",cpu:"150%",disk:"20GB"},
+{name:"Plus 3GB",price:"Rp30.000",cpu:"180%",disk:"30GB"},
+{name:"Premium 4GB",price:"Rp35.000",cpu:"200%",disk:"40GB"},
+{name:"Ultra 6GB",price:"Rp50.000",cpu:"250%",disk:"60GB"},
+{name:"Extreme 8GB",price:"Rp60.000",cpu:"300%",disk:"80GB"},
+{name:"Pro 12GB",price:"Rp90.000",cpu:"350%",disk:"120GB"},
+{name:"Elite 16GB",price:"Rp120.000",cpu:"400%",disk:"160GB"},
+{name:"Monster 24GB",price:"Rp170.000",cpu:"450%",disk:"240GB"},
+{name:"Titan 32GB",price:"Rp220.000",cpu:"500%",disk:"320GB"}
+];
+
+const cards=document.getElementById("publicCards");
+const sel=document.getElementById("paket");
+
+paket.forEach(p=>{
+cards.innerHTML+=`
+<div class="card fade">
+<h3>${p.name}</h3>
+<div class="price">${p.price} / bulan</div>
+<ul>
+<li>✔ CPU ${p.cpu}</li>
+<li>✔ Disk ${p.disk} NVMe</li>
+<li>✔ Java & Bedrock</li>
+<li>✔ Pterodactyl Panel</li>
+</ul>
+<button onclick="quick('${p.name}')">Order</button>
+</div>`;
+sel.innerHTML+=`<option>${p.name}</option>`;
+});
+
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+function toggleFaq(el){
+const p=el.querySelector("p");
+p.style.display=p.style.display==="block"?"none":"block";
+}
+
+function quick(p){
+sel.value=p;
+showPage("contact");
+}
+
+function order(){
+const p=sel.value;
+const pay=document.getElementById("pay").value;
+const data=paket.find(x=>x.name===p);
+const text=
+`Order Hosting Empresstore%0A📦 Paket: ${p}%0A💰 Harga: ${data.price}%0A⚙ CPU: ${data.cpu}%0A💾 Disk: ${data.disk}%0A💳 Pembayaran: ${pay}`;
+window.open(`https://wa.me/${wa}?text=${text}`);
+}
+
+/* promo */
+function closePromo(){
+document.getElementById("promo").style.display="none";
+}
+setTimeout(()=>{document.getElementById("promo").style.display="flex"},800);
+
+/* countdown maintenance (3 hari) */
+const end = new Date();
+end.setDate(end.getDate()+3);
+
+setInterval(()=>{
+const now=new Date();
+const diff=end-now;
+if(diff<=0){
+document.getElementById("countdown").innerText="SELESAI";
+return;
+}
+const d=Math.floor(diff/86400000);
+const h=Math.floor(diff/3600000)%24;
+const m=Math.floor(diff/60000)%60;
+document.getElementById("countdown").innerText=
+`${d}d ${h}h ${m}m`;
+},1000);
+</script>
 
 </body>
 </html>
