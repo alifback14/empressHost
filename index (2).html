@@ -1,0 +1,98 @@
+<!-- FILE: index.html (HOME / KATEGORI) -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emprestore — Minecraft Hosting</title>
+  <style>
+    body{margin:0;font-family:Inter,system-ui;background:#0f1115;color:#e8ecf1}
+    .container{max-width:900px;margin:auto;padding:24px}
+    .card{background:#151822;border:1px solid #23283b;border-radius:14px;padding:20px;margin-bottom:20px}
+    a{color:#6d7cff;text-decoration:none;font-weight:700}
+    footer{text-align:center;color:#9aa3b2;margin-top:40px}
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>📜 Minecraft Hosting — VoxenHost</h1>
+
+  <div class="card">
+    <h2>✨ Kelebihan VoxenHost ✨</h2>
+    <ul>
+      <li>🧑‍🔧 Uptime 99%</li>
+      <li>🛡 Anti DDoS Protection</li>
+      <li>⚡ Processor AMD Milan 7006x</li>
+      <li>🌐 Website & Panel Stabil</li>
+      <li>📦 Cocok untuk Survival, SMP, RPG, Minigame</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Kategori Paket</h2>
+    <p><a href="basic.html">➡ Basic Package (1–3GB)</a></p>
+    <p><a href="medium.html">➡ Medium Package (5–7GB)</a></p>
+    <p><a href="pro.html">➡ Pro Package (8–11GB)</a></p>
+  </div>
+
+  <footer>© 2026 Emprestore</footer>
+</div>
+</body>
+</html>
+
+<!-- =============================== -->
+<!-- =============================== -->
+<!-- FILE: basic.html -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Package — Emprestore</title>
+<style>
+body{margin:0;font-family:Inter,system-ui;background:#0f1115;color:#e8ecf1}
+.container{max-width:900px;margin:auto;padding:24px}
+.card{background:#151822;border:1px solid #23283b;border-radius:14px;padding:20px;margin-bottom:20px}
+button,input{width:100%;padding:12px;border-radius:10px;border:1px solid #23283b;background:#0e1220;color:#e8ecf1;margin-top:10px}
+button{background:#22c55e;color:#06210f;font-weight:700;cursor:pointer}
+img{max-width:100%;border-radius:12px;border:1px solid #23283b;margin-top:10px}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Basic Package (1–3GB)</h1>
+
+<div class="card">
+<h2>Pilih Paket</h2>
+<button onclick="pilih('Basic 1GB','Rp10.000')">Ram 1GB • CPU 100% • Disk 5GB</button>
+<button onclick="pilih('Basic 2GB','Rp20.000')">Ram 2GB • CPU 140% • Disk 7GB</button>
+<button onclick="pilih('Basic 3GB','Rp33.000')">Ram 3GB • CPU 200% • Disk 8GB</button>
+</div>
+
+<div class="card">
+<h2>QRIS Pembayaran</h2>
+<img src="qris.jpg" alt="QRIS Emprestore">
+<p>Silakan scan QRIS di atas lalu upload bukti pembayaran.</p>
+</div>
+
+<div class="card">
+<h2>Invoice Order</h2>
+<input id="nama" placeholder="Nama Pembeli">
+<input id="paket" placeholder="Nama Paket" readonly>
+<input id="harga" placeholder="Harga" readonly>
+<input type="file" id="bukti" accept="image/*">
+<button onclick="kirim()">Kirim ke WhatsApp</button>
+</div>
+</div>
+
+<script>
+function pilih(p,h){
+  paket.value=p; harga.value=h;
+}
+function kirim(){
+  const t=`Halo Admin Emprestore,%0ASaya ingin order Minecraft Hosting.%0A%0ANama: ${nama.value}%0APaket: ${paket.value}%0AHarga: ${harga.value}%0APembayaran: QRIS%0A%0ABukti pembayaran sudah saya upload.`;
+  window.open('https://wa.me/628976497354?text='+t,'_blank');
+}
+</script>
+</body>
+</html>
