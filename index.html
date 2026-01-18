@@ -264,6 +264,27 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
   z-index: -1; /* Supaya berada di belakang teks dan kartu */
   background: radial-gradient(circle at 50% -20%, #1e293b 0%, #020617 80%);
 }</style>
+  <style>.specs-list { list-style: none; padding: 0; margin: 25px 0; text-align: left; }
+.specs-list li { margin-bottom: 12px; font-size: 0.9rem; display: flex; align-items: center; gap: 10px; color: #cbd5e1; }
+.specs-list li::before { content: '✔'; color: #38bdf8; font-weight: bold; }</style><style>.paket-card.popular {
+  border: 2px solid #38bdf8;
+  background: rgba(30, 41, 59, 0.7);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.2);
+  animation: glowPulse 3s infinite;
+}
+@keyframes glowPulse {
+  0% { box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+  50% { box-shadow: 0 0 35px rgba(56, 189, 248, 0.4); }
+  100% { box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
+}</style><style>.popular-badge {
+  position: absolute;
+  top: 15px; right: -35px;
+  background: #38bdf8;
+  color: #020617;
+  font-size: 0.7rem; font-weight: 900;
+  padding: 5px 40px; transform: rotate(45deg);
+}</style><style>.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+.reveal.active { opacity: 1; transform: translateY(0); }</style>
 </head>
 <body>
 
@@ -328,7 +349,13 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
       <div class="paket-card">
         <div class="stock-status in-stock">● Tersedia</div>
         <h3 style="color:#38bdf8">RAM 1GB</h3>
-        <p>CPU: 100% • Disk: 5GB • SG</p>
+        <ul class="specs-list">
+          <li>1 Core CPU</li>
+          <li>Disk: 5GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp6.000<span>/bulan</span></div>
         <a href="https://wa.me/628976497354?text=Halo%20Admin%20Empress,%20saya%20ingin%20memesan%20RAM%201GB" target="_blank" class="order">Beli Sekarang</a>
       </div>
@@ -336,7 +363,13 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
       <div class="paket-card out-of-stock-card">
         <div class="stock-status out-of-stock">✖ Habis Stok</div>
         <h3 style="color:#38bdf8">RAM 2GB</h3>
-        <p>CPU: 140% • Disk: 7GB • SG</p>
+        <ul class="specs-list">
+          <li>1.4 Core CPU</li>
+          <li>Disk: 7GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp18.000<span>/bulan</span></div>
         <a href="#" class="order out-of-stock-btn">Habis</a>
       </div>
@@ -344,7 +377,13 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
       <div class="paket-card out-of-stock-card">
         <div class="stock-status out-of-stock">✖ Habis Stok</div>
         <h3 style="color:#38bdf8">RAM 3GB</h3>
-        <p>CPU: 200% • Disk: 8GB • SG</p>
+        <ul class="specs-list">
+          <li>2 Core CPU</li>
+          <li>Disk: 8GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp23.000<span>/bulan</span></div>
         <a href="#" class="order out-of-stock-btn">Habis</a>
       </div>
@@ -352,7 +391,13 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
       <div class="paket-card out-of-stock-card">
         <div class="stock-status out-of-stock">✖ Habis Stok</div>
         <h3 style="color:#38bdf8">RAM 5GB</h3>
-        <p>CPU: 270% • Disk: 12GB • SG</p>
+        <ul class="specs-list">
+          <li>2.7 Core CPU</li>
+          <li>Disk: 12GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp35.000<span>/bulan</span></div>
         <a href="#" class="order out-of-stock-btn">Habis</a>
       </div>
@@ -360,28 +405,54 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
       <div class="paket-card">
         <div class="stock-status in-stock">● Tersedia</div>
         <h3 style="color:#38bdf8">RAM 6GB</h3>
-        <p>CPU: 300% • Disk: 15GB • SG</p>
+        <ul class="specs-list">
+          <li>3 Core CPU</li>
+          <li>Disk: 15GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp48.000<span>/bulan</span></div>
         <a href="https://wa.me/628976497354?text=Halo%20Admin%20Empress,%20saya%20ingin%20memesan%20RAM%206GB" target="_blank" class="order">Beli Sekarang</a>
       </div>
-      <div class="paket-card">
+      <div class="paket-card popular">
+        <div class="popular-badge">TERPOPULER</div>
         <div class="stock-status in-stock">● Tersedia</div>
         <h3 style="color:#38bdf8">RAM 7GB</h3>
-        <p>CPU: 350% • Disk: 18GB • SG</p>
+        <ul class="specs-list">
+          <li>3.5 Core CPU</li>
+          <li>Disk: 18GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp55.000<span>/bulan</span></div>
         <a href="https://wa.me/628976497354?text=Halo%20Admin%20Empress,%20saya%20ingin%20memesan%20RAM%207GB" target="_blank" class="order">Beli Sekarang</a>
       </div>
       <div class="paket-card">
         <div class="stock-status in-stock">● Tersedia</div>
         <h3 style="color:#38bdf8">RAM 8GB</h3>
-        <p>CPU: 400% • Disk: 20GB • SG</p>
+        <ul class="specs-list">
+          <li>4 Core CPU</li>
+          <li>Disk: 20GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp76.000<span>/bulan</span></div>
         <a href="https://wa.me/628976497354?text=Halo%20Admin%20Empress,%20saya%20ingin%20memesan%20RAM%208GB" target="_blank" class="order">Beli Sekarang</a>
       </div>
-      <div class="paket-card">
+      <div class="paket-card popular">
+        <div class="popular-badge">TERPOPULER</div>
         <div class="stock-status in-stock">● Tersedia</div>
         <h3 style="color:#38bdf8">RAM 9GB</h3>
-        <p>CPU: 450% • Disk: 25GB • SG</p>
+        <ul class="specs-list">
+          <li>4.5 Core CPU</li>
+          <li>Disk: 25GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp89.000<span>/bulan</span></div>
         <a href="https://wa.me/628976497354?text=Halo%20Admin%20Empress,%20saya%20ingin%20memesan%20RAM%209GB" target="_blank" class="order">Beli Sekarang</a>
       </div>
@@ -389,7 +460,13 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
       <div class="paket-card out-of-stock-card">
         <div class="stock-status out-of-stock">✖ Habis Stok</div>
         <h3 style="color:#38bdf8">RAM 10GB</h3>
-        <p>CPU: 500% • Disk: 25GB • SG</p>
+        <ul class="specs-list">
+          <li>5 Core CPU</li>
+          <li>Disk: 25GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp94.000<span>/bulan</span></div>
         <a href="#" class="order out-of-stock-btn">Habis</a>
       </div>
@@ -397,7 +474,13 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
       <div class="paket-card">
         <div class="stock-status in-stock">● Tersedia</div>
         <h3 style="color:#38bdf8">RAM 11GB</h3>
-        <p>CPU: 550% • Disk: 30GB • SG</p>
+        <ul class="specs-list">
+          <li>5.5 Core CPU</li>
+          <li>Disk: 30GB NVMe</li>
+          <li>Region: Singapore</li>
+          <li>1 Free Sub-Domain</li>
+          <li>Backup Otomatis</li>
+        </ul>
         <div class="price">Rp140.000<span>/bulan</span></div>
         <a href="https://wa.me/628976497354?text=Halo%20Admin%20Empress,%20saya%20ingin%20memesan%20RAM%2011GB" target="_blank" class="order">Beli Sekarang</a>
       </div>
