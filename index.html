@@ -284,7 +284,54 @@ footer { text-align: center; padding: 40px; color: #64748b; font-size: 0.9rem; }
   font-size: 0.7rem; font-weight: 900;
   padding: 5px 40px; transform: rotate(45deg);
 }</style><style>.reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
-.reveal.active { opacity: 1; transform: translateY(0); }</style>
+.reveal.active { opacity: 1; transform: translateY(0); }</style><style>/* Pastikan kartu punya ini supaya badge nggak lari ke mana-mana */
+.paket-card {
+  position: relative;
+  overflow: hidden; /* Wajib: supaya ujung ribbon yang lebih kepotong rapi */
+  border: 1px solid #1e293b;
+  transition: 0.3s;
+}
+
+/* CSS Badge Terpopuler */
+.popular-badge {
+  position: absolute;
+  top: 20px;
+  right: -35px; /* Geser ke kanan luar dikit biar miringnya pas */
+  background: #38bdf8; /* Warna biru sesuai tema EmpressHost */
+  color: #020617;
+  padding: 5px 40px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  transform: rotate(45deg); /* Ini yang bikin miring 🗿 */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  z-index: 5;
+  letter-spacing: 1px;
+}</style><style>/* --- STYLE POPULAR BADGE --- */
+.paket-card {
+  position: relative; /* Wajib agar badge nempel di kartu */
+}
+
+.popular-badge {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: linear-gradient(45deg, #f87171, #ef4444); /* Warna merah gradasi */
+  color: white;
+  padding: 5px 15px;
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-radius: 10px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.4);
+  z-index: 10;
+  border: 2px solid #020617; /* Garis tepi biar kontras sama kartu */
+  animation: floatBadge 2s ease-in-out infinite; /* Biar ada efek goyang sedikit */
+}
+
+@keyframes floatBadge {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}</style>
 </head>
 <body>
 
