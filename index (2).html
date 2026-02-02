@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pendaftaran Minecraft - Yufan Elite</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* --- BASE STYLE --- */
+*{box-sizing:border-box; scroll-behavior: smooth;}
+body{
+  margin:0;
+  font-family:Inter,sans-serif;
+  background:#020617;
+  color:#e5e7eb;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+/* --- ANIMASI FADE-IN --- */
+.fade-in { animation: fadeIn 0.8s ease-in-out forwards; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- FORM STYLE --- */
+.form-container {
+  max-width: 600px;
+  margin: 50px auto;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  opacity: 0; /* Untuk animasi fade-in */
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+.form-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.form-container .header-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+}
+
+.form-container h1 {
+  text-align: center;
+  color: #dc3545; /* Tema merah */
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 700;
+  color: #fff;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #1e293b;
+  border-radius: 10px;
+  background: #020617;
+  color: #e5e7eb;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #dc3545; /* Tema merah */
+  outline: none;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-group input {
+  width: auto;
+  margin: 0;
+}
+
+.checkbox-group label {
+  margin: 0;
+  font-weight: 500;
+}
+
+.note {
+  background: rgba(220, 53, 69, 0.1); /* Tema merah transparan */
+  border: 1px solid #dc3545; /* Tema merah */
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #94a3b8;
+}
+
+.note b { color: #dc3545; } /* Tema merah */
+
+.submit-btn, .reset-btn {
+  display: inline-block;
+  width: 48%;
+  background: #dc3545; /* Tema merah */
+  color: #020617;
+  padding: 15px;
+  border: none;
+  border-radius: 30px;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 20px;
+}
+
+.submit-btn:hover, .reset-btn:hover {
+  background: #b02a37; /* Merah gelap */
+  transform: scale(1.02);
+}
+
+.reset-btn {
+  background: #6c757d; /* Abu-abu untuk reset */
+  margin-left: 4%;
+}
+
+.reset-btn:hover {
+  background: #5a6268;
+}
+
+.required { color: #dc3545; } /* Tema merah untuk asterisk */
+
+/* --- PENDIRI SECTION --- */
+.pendiri {
+  max-width: 600px;
+  margin: 30px auto;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 20px;
+  padding: 30px;
+  text-align: center;
+  opacity: 0; /* Untuk animasi fade-in */
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+.pendiri.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.pendiri h2 {
+  color: #dc3545; /* Tema merah */
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.pendiri-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  text-align: left;
+}
+
+.pendiri-item h3 {
+  color: #fff;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.pendiri-item ul {
+  list-style: none;
+  padding: 0;
+  color: #94a3b8;
+}
+
+.pendiri-item li {
+  margin-bottom: 5px;
+}
+
+/* --- FOOTER --- */
+footer {
+  text-align: center;
+  padding: 40px;
+  color: #64748b;
+  font-size: 0.9rem;
+  background: #0f172a;
+  border-radius: 20px;
+  margin-top: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+footer a {
+  color: #dc3545;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+  .form-container, .pendiri, footer {
+    padding: 20px;
+  }
+  .form-container h1, .pendiri h2 {
+    font-size: 1.5rem;
+  }
+  .pendiri-list {
+    grid-template-columns: 1fr;
+  }
+  .submit-btn, .reset-btn {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 10px;
+  }
+}
+
+/* --- OPTIMASI LAPTOP/DESKTOP --- */
+@media (min-width: 1024px) {
+  .form-container, .pendiri, footer {
+    max-width: 1000px; /* Lebih lebar untuk desktop */
+    padding: 60px; /* Padding lebih banyak */
+  }
+  .form-container h1, .pendiri h2 {
+    font-size: 3rem; /* Font header lebih besar */
+  }
+  .pendiri-list {
+    grid-template-columns: repeat(3, 1fr); /* 3 kolom di desktop besar */
+  }
+  .form-container .header-image {
+    max-width: 80%; /* Foto lebih besar */
+  }
+  .submit-btn, .reset-btn {
+    width: 45%; /* Tombol lebih lebar */
+    padding: 18px;
+    font-size: 1.2rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="form-container" id="formContainer">
+  <!-- Foto Header Statis -->
+  <img src="https://iili.io/fZIqZE7.jpg" alt="Yufan Elite Header" class="header-image">
+  
+  <h1>Pendaftaran Server Minecraft Yufan Elite</h1>
+  <form id="registrationForm" onsubmit="submitForm(event)">
+    <div class="form-group">
+      <label for="namaPanggilan">1. Nama Panggilan <span class="required">*</span></label>
+      <input type="text" id="namaPanggilan" name="namaPanggilan" required placeholder="Masukkan nama panggilan Anda" minlength="3">
+    </div>
+
+    <div class="form-group">
+      <label for="namaMinecraft">2. Nama Minecraft untuk Whitelist <span class="required">*</span></label>
+      <input type="text" id="namaMinecraft" name="namaMinecraft" required placeholder="Masukkan username Minecraft Anda" minlength="3">
+    </div>
+
+    <div class="form-group">
+      <label for="umur">3. Umur <span class="required">*</span></label>
+      <select id="umur" name="umur" required>
+        <option value="">Pilih rentang umur...</option>
+        <option value="<13">&lt;13 (Tidak direkomendasikan)</option>
+        <option value="13-15">13-15</option>
+        <option value="16-18">16-18</option>
+        <option value="19+">19+</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <div class="checkbox-group">
+        <input type="checkbox" id="voiceChat" name="voiceChat" required>
+        <label for="voiceChat">4. Sudah menggunakan Voice chat (WAJIB) <span class="required">*</span></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="checkbox-group">
+        <input type="checkbox" id="versiMinecraft" name="versiMinecraft" required>
+        <label for="versiMinecraft">5. Sudah menggunakan versi 1.20.1 (WAJIB) <span class="required">*</span></label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="tipeMinecraft">6. Kamu menggunakan Minecraft apa? <span class="required">*</span></label>
+      <select id="tipeMinecraft" name="tipeMinecraft" required>
+        <option value="">Pilih...</option>
+        <option value="Java">Java</option>
+        <option value="Bedrock">Bedrock (Harap ubah ke Java)</option>
+      </select>
+    </div>
+
+    <div class="note">
+      <b>Note:</b> Isi dengan serius dan menggunakan fabric 1.20.1. Pastikan semua field wajib diisi untuk pendaftaran berhasil.
+    </div>
+
+    <button type="submit" class="submit-btn">Kirim Pendaftaran</button>
+    <button type="button" class="reset-btn" onclick="resetForm()">Reset Form</button>
+  </form>
+</div>
+
+<div class="pendiri" id="pendiriSection">
+  <h2>Tim Pendiri Yufan Elite</h2>
+  <div class="pendiri-list">
+    <div class="pendiri-item">
+      <h3>👑Founder👑</h3>
+      <ul>
+        <li>>Khalif</li>
+      </ul>
+    </div>
+    <div class="pendiri-item">
+      <h3>🎓Owner🎓</h3>
+      <ul>
+        <li>>Rifkhi</li>
+      </ul>
+    </div>
+    <div class="pendiri-item">
+      <h3>💼Co Owner💼</h3>
+      <ul>
+        <li>>Alzel</li>
+      </ul>
+    </div>
+    <div class="pendiri-item">
+      <h3>🪙Donatur🪙</h3>
+      <ul>
+        <li>>Alzel</li>
+        <li>>Repan</li>
+        <li>(Dan Seterusnya!)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2023 Yufan Elite. Semua hak dilindungi. | <a href="https://wa.me/628976497354">Kontak Admin</a></p>
+</footer>
+
+<script>
+// JavaScript untuk animasi, validasi, dan submit
+window.addEventListener('scroll', () => {
+  const formContainer = document.getElementById('formContainer');
+  const pendiriSection = document.getElementById('pendiriSection');
+  const formPos = formContainer.getBoundingClientRect().top;
+  const pendiriPos = pendiriSection.getBoundingClientRect().top;
+  const screenPos = window.innerHeight / 1.2;
+
+  if (formPos < screenPos) {
+    formContainer.classList.add('visible');
+  }
+  if (pendiriPos < screenPos) {
+    pendiriSection.classList.add('visible');
+  }
+});
+
+function resetForm() {
+  document.getElementById('registrationForm').reset();
+}
+
+function submitForm(event) {
+  event.preventDefault();
+  
+  const form = document.getElementById('registrationForm');
+  const formData = new FormData(form);
+  
+  // Validasi tambahan: panjang nama minimal 3
+  if (formData.get('namaPanggilan').length < 3 || formData.get('namaMinecraft').length < 3) {
+    alert('Nama panggilan dan nama Minecraft minimal 3 karakter!');
+    return;
+  }
+  
+  // Validasi checkbox wajib
+  if (!form.voiceChat.checked || !form.versiMinecraft.checked) {
+    alert('Harap centang semua field wajib!');
+    return;
+  }
+  
+  // Validasi umur
+  if (!form.umur.value) {
+    alert('Harap pilih rentang umur!');
+    return;
+  }
+  
+  // Buat pesan WhatsApp
+  let message = 'Halo Yufan Elite, saya ingin mendaftar server Minecraft:\n';
+  message += `1. Nama Panggilan: ${formData.get('namaPanggilan')}\n`;
+  message += `2. Nama Minecraft: ${formData.get('namaMinecraft')}\n`;
+  message += `3. Umur: ${formData.get('umur')}\n`;
+  message += `4. Voice Chat: ${form.voiceChat.checked ? 'Ya' : 'Tidak'}\n`;
+  message += `5. Versi 1.20.1: ${form.versiMinecraft.checked ? 'Ya' : 'Tidak'}\n`;
+  message += `6. Tipe Minecraft: ${formData.get('tipeMinecraft')}\n`;
+  message += 'Note: Menggunakan fabric 1.20.1.';
+  
+  // Copy pesan ke clipboard
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(message).then(() => {
+      alert('Pesan pendaftaran telah dicopy ke clipboard! Klik OK untuk masuk ke grup WhatsApp, lalu paste pesan di sana.');
+      // Redirect ke grup WhatsApp setelah copy
+      window.location.href = 'https://chat.whatsapp.com/ET6XKJ2fi4q2HWHwfoVt5A';
+    }).catch(err => {
+      console.error('Gagal copy: ', err);
+      alert('Gagal copy pesan. Pesan: ' + message + '\n\nSalin manual dan kirim ke grup WhatsApp.');
+      window.location.href = 'https://chat.whatsapp.com/ET6XKJ2fi4q2HWHwfoVt5A';
+    });
+  } else {
+    // Fallback untuk browser lama
+    alert('Pesan pendaftaran: ' + message + '\n\nSalin manual dan kirim ke grup WhatsApp.');
+    window.location.href = 'https://chat.whatsapp.com/ET6XKJ2fi4q2HWHwfoVt5A';
+  }
+  
+  // Reset form setelah submit
+  form.reset();
+}
+</script>
+
+</body>
+</html>
