@@ -401,30 +401,30 @@ function submitForm(event) {
   }
   
   // Buat pesan WhatsApp
-  let message = 'Halo Yufan Elite, saya ingin mendaftar server Minecraft:\n';
+  let message = 'Halo Admin Yufan Elite, saya ingin mendaftar server Minecraft:\n';
   message += `1. Nama Panggilan: ${formData.get('namaPanggilan')}\n`;
   message += `2. Nama Minecraft: ${formData.get('namaMinecraft')}\n`;
   message += `3. Umur: ${formData.get('umur')}\n`;
   message += `4. Voice Chat: ${form.voiceChat.checked ? 'Ya' : 'Tidak'}\n`;
   message += `5. Versi 1.20.1: ${form.versiMinecraft.checked ? 'Ya' : 'Tidak'}\n`;
   message += `6. Tipe Minecraft: ${formData.get('tipeMinecraft')}\n`;
-  message += 'Note: Menggunakan fabric 1.20.1.';
+  message += 'Note: Menggunakan fabric 1.20.1. (HARAP MENUNGGU PESAN DARI ADMIN DAN JANGAN SAMPAI TENGGELAM CHAT NYA YA)';
   
   // Copy pesan ke clipboard
   if (navigator.clipboard) {
     navigator.clipboard.writeText(message).then(() => {
       alert('Pesan pendaftaran telah dicopy ke clipboard! Klik OK untuk masuk ke grup WhatsApp, lalu paste pesan di sana.');
       // Redirect ke grup WhatsApp setelah copy
-      window.location.href = 'https://chat.whatsapp.com/ET6XKJ2fi4q2HWHwfoVt5A';
+      window.location.href = 'https://chat.whatsapp.com/IWQhNH14bP6IUk7umBpCwd?mode=gi_t';
     }).catch(err => {
       console.error('Gagal copy: ', err);
       alert('Gagal copy pesan. Pesan: ' + message + '\n\nSalin manual dan kirim ke grup WhatsApp.');
-      window.location.href = 'https://chat.whatsapp.com/ET6XKJ2fi4q2HWHwfoVt5A';
+      window.location.href = 'https://chat.whatsapp.com/IWQhNH14bP6IUk7umBpCwd?mode=gi_t';
     });
   } else {
     // Fallback untuk browser lama
     alert('Pesan pendaftaran: ' + message + '\n\nSalin manual dan kirim ke grup WhatsApp.');
-    window.location.href = 'https://chat.whatsapp.com/ET6XKJ2fi4q2HWHwfoVt5A';
+    window.location.href = 'https://chat.whatsapp.com/IWQhNH14bP6IUk7umBpCwd?mode=gi_t';
   }
   
   // Reset form setelah submit
